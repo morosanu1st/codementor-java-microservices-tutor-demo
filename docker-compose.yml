@@ -1,0 +1,10 @@
+services:
+  inventory:
+    build: ./inventory-service
+    ports: ["8081:8081"]
+  orders:
+    build: ./order-service
+    environment:
+      INVENTORY_URL: http://inventory:8081
+    ports: ["8082:8082"]
+    depends_on: [inventory]
